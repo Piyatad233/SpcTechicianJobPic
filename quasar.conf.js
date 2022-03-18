@@ -91,7 +91,17 @@ module.exports = function (/* ctx */) {
                 "http://localhost/spctechnicianjobpicAPI",
             }
           
-        }
+        },
+        "/palletdragging": {
+          target: "http://192.168.100.29",
+          changeOrigin: true,
+          pathRewrite: {
+            "^/palletdraggingi":
+              "http://192.168.100.29/palletdragging",
+          }
+        
+      },
+
       }
       },
 

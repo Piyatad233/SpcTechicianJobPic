@@ -121,7 +121,7 @@
         :maxWidth="600"
         ref="upload"
         :quality="0.7"
-        :autoRotate="true"
+        :autoRotate="false"
         outputFormat="blob"
         :preview="false"
         :capture="true"
@@ -217,10 +217,12 @@ export default {
       this.xfile = new File([blob], data.name, {
         type: data.type,
         lastModified: data.lastModified,
+
       });
-      var reader = new FileReader();
-      reader.onload = (e) => (this.url = e.target.result);
-      reader.readAsDataURL(this.xfile);
+      console.log(data.lastModified);
+      // var reader = new FileReader();
+      // reader.onload = (e) => (this.url = e.target.result);
+      // reader.readAsDataURL(this.xfile);
     },
     saveDataInTable() {
       if (this.xfile == null) {

@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
-    "deploy311srv": "quasar build -m spa &&cp -r dist/spa/* //spc311srv/piyatad/vue/SpcTechnicianJobPic"
+    "deploy": "quasar build && cp -r dist/spa/* //spc311srv/piyatad/vue/SpcTechnicianJobPic"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

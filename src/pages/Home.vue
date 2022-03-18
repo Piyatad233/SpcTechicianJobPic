@@ -141,7 +141,7 @@ export default {
     getData() {
       this.ChackEmpID = localStorage.getItem("EmpID");
       if (this.ChackEmpID == "") {
-        this.showError("กรุณากลับไปหน้าล็อคอิน");
+        this.showError("กรุณาล็อคอิน");
         this.$nextTick(() => {
           this.$router.replace({ path: "/" });
         });
