@@ -45,8 +45,8 @@
             <q-card-section>
               <q-item-label>ล่าสุด</q-item-label>
               <q-item
-                v-for="items in options"
-                :key="items.pathPicture"
+                v-for="(items,i) in options"
+                :key="`${items.joB_Number}-${i}`"
                 class="q-mb-sm col-12 col-md-8 bg-grey-1"
                 clickable
                 v-ripple
@@ -156,6 +156,7 @@ export default {
             console.log(e.data);
             this.dataJOB = e.data;
             this.options = this.dataJOB;
+            console.log(this.ChackEmpID);
           }
         })
         .catch((error) => this.showError(error.response.data));

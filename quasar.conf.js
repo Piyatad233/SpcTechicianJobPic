@@ -100,7 +100,7 @@ module.exports = function (/* ctx */) {
               "http://192.168.100.29/palletdragging",
           }
         
-      },
+          },
 
       }
       },

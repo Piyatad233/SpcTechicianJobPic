@@ -26,7 +26,7 @@
           </q-input>
         </q-card-section>
       </q-header>
-      <q-scroll-area :delay="1200" style="height: 675px">
+      <q-scroll-area :delay="1200" style="height: 1000px">
         <q-page-container>
           <q-list bordered class="rounded-borders">
             <q-expansion-item
@@ -96,14 +96,16 @@
           </q-expansion-item>
         </q-page-container>
       </q-scroll-area>
+
       <q-footer reveal class="bg-grey-1 text-purple-4">
         <q-card-actions>
           <q-btn
             icon="save"
             color="purple-4"
             class="text-white"
-            label="บันทึก"
+            :label="btnSavelabel"
             @click="saveDataInTable"
+            :disable="disableBtn"
           />
           <q-btn
             flat
@@ -149,6 +151,8 @@ export default {
       open: false,
       open2: false,
       xfile: null,
+      disableBtn: false,
+      btnSavelabel: "บันทึก",
     };
   },
   methods: {
@@ -162,6 +166,7 @@ export default {
       this.$q.notify({
         message: message,
         color: "green",
+        timeout: 3000,
       });
     },
     ...mapActions("login", [
@@ -172,7 +177,7 @@ export default {
       "UploadIMG",
     ]),
     getJOB() {
-       this.ChackEmpID = localStorage.getItem("EmpID");
+      this.ChackEmpID = localStorage.getItem("EmpID");
       if (this.ChackEmpID == "") {
         this.showError("กรุณาล็อคอิน");
         this.$nextTick(() => {
@@ -217,12 +222,11 @@ export default {
       this.xfile = new File([blob], data.name, {
         type: data.type,
         lastModified: data.lastModified,
-
       });
       console.log(data.lastModified);
-      // var reader = new FileReader();
-      // reader.onload = (e) => (this.url = e.target.result);
-      // reader.readAsDataURL(this.xfile);
+      var reader = new FileReader();
+      reader.onload = (e) => (this.url = e.target.result);
+      reader.readAsDataURL(this.xfile);
     },
     saveDataInTable() {
       if (this.xfile == null) {
@@ -249,7 +253,8 @@ export default {
         return;
       }
       formData.append("Remark", this.Remark.replace("'", ""));
-
+      this.disableBtn = true;
+      this.btnSavelabel = "กำลังบันทึก";
       this.UploadIMG(formData)
         .then((e) => {
           if (e.status === 200) {
@@ -265,10 +270,17 @@ export default {
             this.open = false;
             this.open2 = false;
             this.xfile = null;
-            this.$router.push({ path: "/Home" });
+            this.disableBtn = false;
+            this.btnSavelabel = "บันทึก";
+            setTimeout(() => {
+              this.$router.replace({ path: "/Home" });
+            }, 5000);
           }
         })
-        .catch((error) => this.showError(error.response.data));
+        .catch((error) => this.showError(error.response.data))
+        .finally(() => {
+          this.disableBtn = false;
+        });
     },
     goHome() {
       this.$router.push({ path: "/Home" });

@@ -7,7 +7,7 @@
     >
       <q-page-container>
         <q-page
-          class="window-height window-width row justify-center items-center"
+          class="window-height window-width row justify-center items-center "
           style="background: linear-gradient(#8274c5, #5a4a9f)"
         >
           <form @submit.prevent="login">
