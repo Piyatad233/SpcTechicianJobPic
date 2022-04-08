@@ -20,7 +20,7 @@
                 >
                   <q-card-section class="bg-deep-purple-7">
                     <h4 class="text-h5 text-white q-my-md">
-                      ถ่ายรูปงานช่างซ่อม
+                      งานช่างซ่อมเครื่องยนต์
                     </h4>
                   </q-card-section>
                   <q-card-section>
@@ -108,10 +108,11 @@ export default {
       })
         .then((e) => {
           if (e.status === 200) {
-            console.log(e.data);
+       
             localStorage.setItem("EmpID", e.data[0].empID);
             localStorage.setItem("SpcName", e.data[0].spcName);
-            this.$router.push({ path: "/Home" });
+            localStorage.setItem("NickName", e.data[0].nickname);
+            this.$router.push({ path: "/select" });
           }
         })
         .catch((error) => this.showError(error.response.data));

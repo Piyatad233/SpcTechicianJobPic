@@ -118,7 +118,7 @@ export default {
       })
         .then((e) => {
         
-          console.log(e.data);
+         
           this.dataUser = e.data;
           this.$router.push({ path: "/" });
         })

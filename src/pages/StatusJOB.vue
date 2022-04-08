@@ -103,6 +103,7 @@
             icon="save"
             color="purple-4"
             class="text-white"
+        
             :label="btnSavelabel"
             @click="saveDataInTable"
             :disable="disableBtn"
@@ -195,7 +196,7 @@ export default {
       })
         .then((e) => {
           if (e.status === 200) {
-            console.log(e.data);
+            
             this.dataJOB = e.data;
             this.JobNumber = e.data.joB_Number;
             this.JobCarID = e.data.joB_CARID;
@@ -217,13 +218,13 @@ export default {
     addImage(blob) {
       this.open2 = true;
       var data = this.$refs.upload._data.currentFile;
-      console.log(data);
+    
 
       this.xfile = new File([blob], data.name, {
         type: data.type,
         lastModified: data.lastModified,
       });
-      console.log(data.lastModified);
+   
       var reader = new FileReader();
       reader.onload = (e) => (this.url = e.target.result);
       reader.readAsDataURL(this.xfile);
@@ -255,10 +256,11 @@ export default {
       formData.append("Remark", this.Remark.replace("'", ""));
       this.disableBtn = true;
       this.btnSavelabel = "กำลังบันทึก";
+      
       this.UploadIMG(formData)
         .then((e) => {
           if (e.status === 200) {
-            console.log(e.data);
+            
             this.showSuccess("บันทึกสำเร็จ");
             this.JOB_Number = "";
             this.dataJOB = "";
@@ -272,9 +274,7 @@ export default {
             this.xfile = null;
             this.disableBtn = false;
             this.btnSavelabel = "บันทึก";
-            setTimeout(() => {
-              this.$router.replace({ path: "/Home" });
-            }, 5000);
+            this.$router.replace({ path: "/Home" });
           }
         })
         .catch((error) => this.showError(error.response.data))

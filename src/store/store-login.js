@@ -46,7 +46,21 @@ const actions = {
     {
       params: data,
     })
-  }
+  },
+  getCarMachine({ state }) {
+    return axios.get(`${apiHost}/Shop24/getCarMachineJob`);
+  },
+  getCarMachineById({ state }, data) {
+    return axios.get(`${apiHost}/Shop24/getCarMachineJobById`,{
+      params: data,
+    });
+  },
+  updateJobHandlift({ state }, data) {
+    return axios.post(`${apiHost}/Shop24/updateJobHandlift`,data, {headers: { "Content-Type":"application/json"}});
+  },
+  closeJobHandlift({ state }, data) {
+    return axios.post(`${apiHost}/Shop24/closeJobHandlift`,data, {headers: { "Content-Type":"application/json"}});
+  },
 };
 
 const getters = {};

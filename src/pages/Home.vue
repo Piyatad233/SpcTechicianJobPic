@@ -45,7 +45,7 @@
             <q-card-section>
               <q-item-label>ล่าสุด</q-item-label>
               <q-item
-                v-for="(items,i) in options"
+                v-for="(items, i) in options"
                 :key="`${items.joB_Number}-${i}`"
                 class="q-mb-sm col-12 col-md-8 bg-grey-1"
                 clickable
@@ -97,14 +97,16 @@
           color="purple-4"
           class="text-white"
           label="บันทึกข้อมูลใหม่"
+    
           @click="goSaveData"
         />
         <q-btn
           flat
           color="purple-4"
           class="text-white"
-          label="ออกจากระบบ"
-          @click="returnLogin"
+          label="ย้อนกลับ"
+         
+          @click="returnSelect"
         />
       </q-card-actions>
     </q-footer>
@@ -153,10 +155,8 @@ export default {
       })
         .then((e) => {
           if (e.status === 200) {
-            console.log(e.data);
             this.dataJOB = e.data;
             this.options = this.dataJOB;
-            console.log(this.ChackEmpID);
           }
         })
         .catch((error) => this.showError(error.response.data));
@@ -168,16 +168,14 @@ export default {
         done();
       }, 1000);
     },
-    returnLogin() {
-      this.$router.replace({ path: "/" });
-      localStorage.setItem("EmpID", "");
-      localStorage.setItem("SpcName", "");
+    returnSelect() {
+      this.$router.replace({ path: "/select" });
+     
     },
     goSaveData() {
       this.$router.push({ path: "/StatusJOB" });
     },
     onclick(e) {
-      console.log(e);
       this.src = e.pathPicture;
       this.caption = e.joB_Number;
       this.captionRemark = e.remark;
@@ -191,11 +189,9 @@ export default {
         if (this.model === "") {
           this.options = this.dataJOB;
         } else {
-          console.log(this.model);
           this.options = this.dataJOB.filter((v) =>
             v.joB_Number.toUpperCase().startsWith(this.model.toUpperCase())
           );
-          console.log(this.options);
         }
       }, 300);
     },

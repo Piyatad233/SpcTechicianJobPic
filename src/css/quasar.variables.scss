@@ -12,7 +12,7 @@
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
 
-$primary   : #1976D2;
+$primary   : #ba68c8;
 $secondary : #26A69A;
 $accent    : #9C27B0;
 
@@ -22,3 +22,9 @@ $positive  : #21BA45;
 $negative  : #C10015;
 $info      : #31CCEC;
 $warning   : #F2C037;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&family=Source+Sans+Pro:wght@200;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
+
+$typography-font-family:'Kanit', sans-serif !default;

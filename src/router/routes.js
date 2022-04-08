@@ -1,3 +1,5 @@
+
+// import test from "pages/JobHandlift"
 const routes = [
   {
     path: "/index",
@@ -27,6 +29,19 @@ const routes = [
   {
     path: "/Home",
     component: () => import("pages/Home.vue") ,
+  },
+  {
+    path: "/select",
+    component: () => import("pages/selectPage.vue") ,
+  },
+
+  {
+    path: "/alljobopen",
+    component: () => import('pages/JobHandlift/ShowAllJobHandlift.vue') ,
+  },
+  {
+    path: "/ShowHandlift",
+    component: () => import("pages/JobHandlift/ShowHandlift.vue") ,
   },
 ];
 
